@@ -24,7 +24,7 @@ router.post('/sessions', async (req, res) => {
         return res.status(400).send({error: "Incorrect password or username"});
     }
 
-    const isMatch = bcrypt.compare(req.body.password, user.password);
+    const isMatch = await bcrypt.compare(req.body.password, user.password);
 
     if(!isMatch){
         return res.status(400).send({error: "Incorrect password or username!"});
